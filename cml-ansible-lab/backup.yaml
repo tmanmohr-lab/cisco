@@ -1,0 +1,12 @@
+---
+- name: Back up the running configs
+  hosts: routers
+  gather_facts: no
+
+  tasks:
+    - name: Save each running config to a file
+      ios_config:
+        backup: true
+        backup_options:
+          dir_path: ./backups
+          filename: "{{ inventory_hostname }}.cfg"
